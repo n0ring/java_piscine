@@ -2,24 +2,25 @@ import java.util.Scanner;
 
 public class Program {
 	private static final int EXIT_ERROR = -1;
-	private static final int EXIT_SUCCESS = 0;
 
 	public static void main(String[] args) {
 		Scanner	sc		= new Scanner(System.in);
-		int		input	= sc.nextInt();
 		boolean	isPrime = true;
 		int		steps	= 0;
+		int		input;
 		int		sqrt_in;
 
+		if (!sc.hasNextInt()) {
+			error_exit(sc);
+		}
+		input	= sc.nextInt();
 		if (input <= 1) {
-			sc.close();
-			System.out.print("Illegal Argument\n");
-			System.exit(EXIT_ERROR);
+			error_exit(sc);
 		}
 		else if (input == 2) {
 			sc.close();
-			System.out.print("true " + 1 + '\n');
-			System.exit(EXIT_SUCCESS);
+			System.out.println("true " + 1);
+			return ;
 		}
 		sqrt_in = get_sqrt(input);
 		for (int i = 2; i <= sqrt_in; i++) {
@@ -30,10 +31,10 @@ public class Program {
 			}
 		}
 		if (isPrime) {
-			System.out.print("true " + steps + '\n');
+			System.out.println("true " + steps);
 		}
 		else {
-			System.out.print("false " + steps + '\n');
+			System.out.println("false " + steps);
 		}
 		sc.close();
 	}
@@ -45,5 +46,12 @@ public class Program {
 			}
 		}
 		return x;
+	}
+
+	private static void error_exit(Scanner sc)
+	{
+		sc.close();
+		System.err.println("Illegal Argument");
+		System.exit(EXIT_ERROR);
 	}
 }

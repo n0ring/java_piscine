@@ -6,7 +6,7 @@ public class Program
 	private static final int MAX_GRADES = 5;
 	private static final int MIN_GRADE = 1;
 	private static final int MAX_GRADE = 9;
-	private static final int ERROR_EXIT = -1;
+	private static final int EXIT_ERROR = -1;
 
 	public static void main(String[] args) {
 		Scanner	sc			=	new Scanner(System.in);
@@ -20,8 +20,7 @@ public class Program
 				break ;
 			}
 			if (!tmpInput.equals("Week " + i)) {
-				sc.close();
-				errorExit();
+				errorExit(sc);
 			}
 			min_grades *= 10;
 			min_grades += getWeekGrade(sc);
@@ -35,10 +34,12 @@ public class Program
 		int currentMin = 10;
 		int currentVal;
 		for (int i = 0; i < MAX_GRADES; i++) {
+			if (!sc.hasNextInt()) {
+				errorExit(sc);
+			}
 			currentVal = sc.nextInt();
 			if (currentVal < MIN_GRADE || currentVal > MAX_GRADE) {
-				sc.close();
-				errorExit();
+				errorExit(sc);
 			}
 			if (currentVal < currentMin) {
 				currentMin = currentVal;
@@ -47,9 +48,11 @@ public class Program
 		return currentMin;
 	}
 
-	private static void errorExit() {
-		System.out.print("Illegal Argument\n");
-		System.exit(ERROR_EXIT);
+	private static void errorExit(Scanner sc)
+	{
+		sc.close();
+		System.err.println("Illegal Argument");
+		System.exit(EXIT_ERROR);
 	}
 
 	private static void printChartLine(long grade, int week) {

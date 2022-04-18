@@ -3,25 +3,28 @@ import java.util.Scanner;
 public class Program
 {
 	private static final int END_OF_INPUT = 42;
+	private static final int EXIT_ERROR = -1;
 	public static void main(String[] args) {
 		Scanner sc		= new Scanner(System.in);
-		int		coffee = 0;
+		int		coffee	= 0;
 		int		input;
 		
 		while (true) {
+			if (!sc.hasNextInt()) {
+				error_exit(sc);
+			}
 			input = sc.nextInt();
 			if (input == END_OF_INPUT) {
 				break ;
 			}
 			if (input <= 1) {
-				System.out.print("Illegal Argument\n");
-				System.exit(1);
+				error_exit(sc);
 			}
 			if (isPrime(getSum(input))) {
 				coffee++;
 			}
 		}
-		System.out.print("Count of coffee-request - " + coffee + '\n');
+		System.out.println("Count of coffee-request - " + coffee);
 		sc.close();
 	}
 
@@ -34,6 +37,13 @@ public class Program
 		return res;
 	}
 
+	private static void error_exit(Scanner sc)
+	{
+		sc.close();
+		System.err.println("Illegal Argument");
+		System.exit(EXIT_ERROR);
+	}
+
 	private static boolean isPrime(int x) {
 		int sqrt_in;
 
@@ -43,7 +53,7 @@ public class Program
 		if (x == 2) {
 			return true;
 		}
-		sqrt_in = sqrt(x);
+		sqrt_in = get_sqrt(x);
 		for (int i = 2; i <= sqrt_in; i++) {
 			if (x % i == 0) {
 				return false;
@@ -52,7 +62,7 @@ public class Program
 		return true;
 	}
 
-	private static int sqrt(int x) {
+	private static int get_sqrt(int x) {
 		for (int i = 2; i < x; i++)
 		{
 			if (i * i >= x)
