@@ -1,11 +1,5 @@
 import java.util.Scanner;
 
-
-// get string --> to char arr
-// 2 arrs? 1->chars 2-> count 
-
-
-
 public class Program
 {
 
