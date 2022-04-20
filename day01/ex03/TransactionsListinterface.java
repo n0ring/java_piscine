@@ -1,5 +1,7 @@
+import java.util.UUID;
+
 public interface TransactionsListinterface {
 	void addTransaction(Transaction newTransaction);
-	void removeTransactionById(String id);
-	// Transaction[] toArray();
+	void removeTransactionById(UUID id) throws TransactionNotFoundException;
+	Transaction[] toArray() throws TransactionListEmptyException;
 }

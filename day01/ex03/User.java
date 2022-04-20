@@ -1,14 +1,16 @@
 
 public class User {
 
-	private final	int		Identifier;
-	private 		String	Name;
-	private			int		Balance;
+	private final	int						Identifier;
+	private 		String					Name;
+	private			int						Balance;
+	private			TransactionsLinkedList	trList ;
 
 	public User(String name, int startBalance) {
 		Name = name;
 		Identifier = UserIdsGenerator.getInstance().generateId();
 		setBalance(startBalance);
+		trList = new TransactionsLinkedList();
 	}
 
 	public int getId() {
@@ -33,6 +35,10 @@ public class User {
 
 	public void setName(String newName) {
 		Name = newName;
+	}
+
+	public TransactionsLinkedList getListTransactions() {
+		return trList;
 	}
 
 	@Override
