@@ -41,7 +41,7 @@ public class MyBlockingQueue {
 	public void getFile(String url) {
 		try {
 			InputStream in = new URL(url).openStream();
-			Files.copy(in, Paths.get("downLoaded_files/" +  getFileName(url)),
+			Files.copy(in, Paths.get(getFileName(url)),
 				StandardCopyOption.REPLACE_EXISTING);
 		} catch (Exception e) {
 			System.err.println(e);
