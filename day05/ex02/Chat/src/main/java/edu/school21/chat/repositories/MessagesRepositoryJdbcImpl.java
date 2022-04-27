@@ -54,7 +54,6 @@ public class MessagesRepositoryJdbcImpl implements MessagesRepository{
 		Timestamp ts=new Timestamp(date.getTime());
 		String INSERT_QUERY = "INSERT INTO chat.Message (message_id, author, room, text, time) "
 				+ " VALUES (DEFAULT, "+ authorId +", "+ roomId +", \'" + text + "\', \'" + ts.toString() + "\');";
-		System.out.println(INSERT_QUERY);
 		return (INSERT_QUERY);
 	}
 

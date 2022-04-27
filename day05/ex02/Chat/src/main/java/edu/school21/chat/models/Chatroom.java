@@ -50,7 +50,10 @@ public class Chatroom {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Chatroom chatroom = (Chatroom) o;
-        return Objects.equals(Id, chatroom.Id) && Objects.equals(Name, chatroom.Name) && Objects.equals(Owner, chatroom.Owner) && Objects.equals(ChatRoomMessages, chatroom.ChatRoomMessages);
+        return Objects.equals(Id, chatroom.Id)
+                && Objects.equals(Name, chatroom.Name)
+                && Objects.equals(Owner, chatroom.Owner)
+                && Objects.equals(ChatRoomMessages, chatroom.ChatRoomMessages);
     }
 
     @Override
