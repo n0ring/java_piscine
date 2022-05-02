@@ -1,22 +1,15 @@
-create table chat.User
+
+
+create table public.service
 (
-    user_id serial primary key,
-    login varchar(30) not null ,
-    password varchar(30)
+    id serial primary key,
+    email varchar(30) not null
 );
 
-create table chat.Chatroom
-(
-    chatroom_id serial primary key,
-    name varchar(30),
-    owner int not null references chat.User(user_id)
-);
 
-create table chat.Message
-(
-    message_id serial primary key,
-    author  int not null references chat.User(user_id),
-    room  int not null references chat.Chatroom(chatroom_id),
-    text       varchar(255),
-    time timestamp
-)
+INSERT INTO public.service (id, email) VALUES (DEFAULT, 'namina@mail.ru');
+INSERT INTO public.service (id, email) VALUES (DEFAULT, 'namina2@mail.ru');
+INSERT INTO public.service (id, email) VALUES (DEFAULT, 'namina3@mail.ru');
+INSERT INTO public.service (id, email) VALUES (DEFAULT, 'namina4@mail.ru');
+INSERT INTO public.service (id, email) VALUES (DEFAULT, 'namina5@mail.ru');
+INSERT INTO public.service (id, email) VALUES (DEFAULT, 'namina6@mail.ru');
